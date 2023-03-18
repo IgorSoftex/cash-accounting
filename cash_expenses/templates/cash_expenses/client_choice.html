@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block buttons %}
+{% endblock buttons %}
+
+{% block content %}
+
+{{ super() }}
+
+<div class="clear"></div>
+<div class="content">
+    
+{% for clients in pages.items %}
+    <p>
+        <a href="{{ url_for('cash_expenses.client_after_choice', client_id=clients.id) }}"> {{ clients.name }} </a>
+    </p>
+{% endfor %}
+
+</div>
+        
+{% endblock content%}
+
+{% block pagination %}        
+
+<!--nav aria-label="..."!-->
+<nav>
+  <ul class="pagination justify-content-center">
+    <li {% if pages.has_prev %} class="page-item enabled" {% else %} class="page-item disabled" {% endif %}>
+      <a class="page-link" href="./?page={{pages.prev_num}}"><<</a>
+    </li>
+    
+    {% for page in pages.iter_pages() %}
+        <li {% if page == pages.page %} class="page-item active" {% endif %} aria-current="page">
+            <a class="page-link" href="./?page={{page}}">{{page}}</a>
+        </li>
+    {% endfor %}
+
+    <li {% if pages.has_next %} class="page-item enabled" {% else %} class="page-item disabled" {% endif %}>
+      <a class="page-link" href="./?page={{pages.next_num}}">>></a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock pagination%}

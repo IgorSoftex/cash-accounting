@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    {% block title %}
+    {% if title %}
+        <title>{{title}}</title>
+    {% endif %}
+    {% endblock title%}
+
+  </head>
+
+  <body>
+
+    {% block main_menu %}
+
+    <nav class="navbar bg-secondary" data-bs-theme="dark">
+    <ul class="mainmenu">
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+       {% for m in menu %}
+        <a href="{{m.url}}" class="btn btn-secondary" aria-current="page">{{m.name}}</a>
+       {% endfor %}
+    <form class="d-flex" role="search" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Пошук" name="q" value="{{ request.args.get('q', '') }}">
+        <button class="btn btn-dark" type="submit">Знайти</button>
+    </form>       
+
+    </div>
+    </ul>
+    </nav>   
+    {% endblock main_menu %}
+
+    {% block buttons %}
+
+    {% endblock buttons %}
+
+    {% block content_title %}
+        
+    <div class="clear"></div>
+    <div class="content">
+    {% if title %}
+        <h2>{{title}}</h2>
+    {% endif %}
+    </div>
+    
+    {% endblock content_title%}
+
+    {% block content %}        
+    
+    {% endblock content%}
+
+    {% block pagination %}        
+    {% endblock pagination%}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+
+</html>

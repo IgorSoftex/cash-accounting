@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block buttons %}
+    <ul class="buttons">
+    <p><div class="btn-group" role="group" aria-label="Basic outlined example">
+        <a href="{{ url_for('cash_expenses.cash_expense_edit', id=cash_expense_element.id) }}" class="btn btn-primary" aria-current="page">Назад</a>
+    </div>
+    </ul>
+{% endblock buttons %}
+
+
+{% block content %}
+
+{{ super() }}
+
+    <form action="{{ url_for('.cash_expense_edit', id=cash_expense_element.id) }}"  method="post">
+
+    {{ form.csrf_token }}
+
+
+    <!—Bootstrap стили CSS -->
+
+
+    <section id="section00">
+
+    <div class="container-fluid">
+
+    <div class="row">
+
+    <div class="col-4">
+        {{ form.id.label() }}
+        <p class="lead">{{ form.id() }}
+    </div>
+
+    </div>
+
+    </div>
+    
+    </section>
+
+
+
+    <section id="section0">
+
+    <div class="container-fluid">
+
+    <div class="row">
+
+    <div class="col-4">
+        {{ form.date.label() }}
+        <p class="lead">{{ form.date() }}
+    </div>
+
+    <div class="col">
+        {{ form.type_id() }}
+        {{ form.type_name.label() }}
+        <p class="lead">{{ form.type_name() }}
+        <input class="btn btn-primary" type="submit" value="Вибрати" name="type_choice">
+    </div>
+
+    </div>
+
+    </div>
+    
+    </section>
+
+
+
+    <section id="section1">
+
+    <div class="container-fluid">
+
+    <div class="row">
+
+    <div class="col-4">
+        {{ form.cash_desk_id() }}
+        {{ form.cash_desk_name.label() }}
+        <p class="lead">{{ form.cash_desk_name() }}
+        <input class="btn btn-primary" type="submit" value="Вибрати" name="cash_desk_choice">
+    </div>
+
+    <div class="col-4">
+        {{ form.client_id() }}
+        {{ form.client_name.label() }}
+        <p class="lead">{{ form.client_name() }}
+        <input class="btn btn-primary" type="submit" value="Вибрати" name="client_choice">
+    </div>
+
+
+    </div>
+
+    </div>
+    
+    </section>
+
+
+
+
+    <section id="section5">
+
+    <div class="container-fluid">
+
+    <div class="row">
+
+    <div class="col-4">
+        {{ form.sum.label() }}
+        <p class="lead">{{ form.sum() }}
+    </div>
+
+    <div class="col-4">
+        {{ form.currency_code() }}
+        {{ form.currency_name.label() }}
+        <p class="lead">{{ form.currency_name() }}
+        <input class="btn btn-primary" type="submit" value="Вибрати" name="currency_choice">
+    </div>
+
+    </div>
+
+    </div>
+    
+    </section>
+
+
+
+
+    <section id="section6">
+
+    <div class="container-fluid">
+
+    <div class="row">
+
+    <div class="col-4">
+        {{ form.description.label() }}
+        <p class="lead">{{ form.description() }}
+    </div>
+
+    </div>
+
+    </div>
+    
+    </section>
+
+
+    
+    <div class="row">
+        <label for="button" class="form-label"></label>
+    </div>
+
+    <p>{{ form.submit() }}
+
+    </form>
+
+{% endblock %}

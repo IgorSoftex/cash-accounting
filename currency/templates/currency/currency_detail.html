@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block buttons %}
+    <ul class="buttons">
+    <p><div class="btn-group" role="group" aria-label="Basic outlined example">
+        <a href="{{ url_for('currency.index') }}" class="btn btn-primary" aria-current="page">Назад</a>
+        <a href="{{ url_for('currency.currency_edit', code=currency_element.code) }}" class="btn btn-success" aria-current="page">Редагувати</a>
+        <a href="{{ url_for('currency.currency_delete', code=currency_element.code) }}" class="btn btn-danger" aria-current="page">Видалити</a>
+    </div>
+    </ul>
+{% endblock buttons %}
+
+{% block content_title %}
+{% endblock content_title%}
+
+{% block content %}
+
+{{ super() }}
+
+    {% if currency_element %}
+        <h3>
+            {{currency_element.name}}
+        </h3>
+        <h5>
+            <p>Код: {{currency_element.code}}</p>
+        </h5>
+    {% endif %}
+
+<!— flash messages -->
+{% if get_flashed_messages() %}
+{% for cat, msg in get_flashed_messages(True) %}
+    {% if cat == "success" %}
+        <div class="flash p-3 mb-2 bg-success text-white">{{msg}}</div>
+    {% else %}
+        <div class="flash p-3 mb-2 bg-danger text-white">{{msg}}</div>
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+{% endblock content %}
+

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block buttons %}
+    <ul class="buttons">
+    <p><div class="btn-group" role="group" aria-label="Basic outlined example">
+        <a href="{{ url_for('cash_desks.cash_desk_detail', id=cash_desk_element.id) }}" class="btn btn-primary" aria-current="page">Назад</a>
+    </div>
+    </ul>
+{% endblock buttons %}
+
+
+{% block content %}
+
+{{ super() }}
+
+    <form action="{{ url_for('.cash_desk_edit', id=cash_desk_element.id) }}"  method="post">
+
+    {{ form.csrf_token }}
+
+
+    <!—Bootstrap стили CSS -->
+
+
+    <section id="section0">
+
+    <div class="container-fluid">
+
+    <div class="row">
+
+    <div class="col-4">
+        {{ form.id.label() }}
+        <p class="lead">{{ form.id() }}
+    </div>
+
+    </div>
+
+    </div>
+    
+    </section>
+
+
+
+    <section id="section1">
+
+    <div class="container-fluid">
+
+    <div class="row">
+
+    <div class="col-4">
+        {{ form.name.label() }}
+        <p class="lead">{{ form.name() }}
+    </div>
+
+    </div>
+
+    </div>
+    
+    </section>
+
+
+    
+    <div class="row">
+        <label for="button" class="form-label"></label>
+    </div>
+
+    <p>{{ form.submit() }}
+
+    </form>
+
+{% endblock %}

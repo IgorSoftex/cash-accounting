@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block buttons %}
+    <ul class="buttons">
+    <p><div class="btn-group" role="group" aria-label="Basic outlined example">
+        <a href="{{ url_for('cash_receipts.index') }}" class="btn btn-primary" aria-current="page">Назад</a>
+        <a href="{{ url_for('cash_receipts.cash_receipt_edit', id=cash_receipt_element.id) }}" class="btn btn-success" aria-current="page">Редагувати</a>
+        <a href="{{ url_for('cash_receipts.cash_receipt_delete', id=cash_receipt_element.id) }}" class="btn btn-danger" aria-current="page">Видалити</a>
+    </div>
+    </ul>
+{% endblock buttons %}
+
+{% block content_title %}
+{% endblock content_title%}
+
+{% block content %}
+
+{{ super() }}
+
+    {% if cash_receipt_element %}
+        <h2>
+            Надходження в касу ({{cash_receipt_element.type}})
+        </h2>
+        <h4>
+            <p><p>№: {{cash_receipt_element.id}} від {{cash_receipt_element.date}}</p></p>
+            <p></p>
+            <p>Каса: {{cash_receipt_element.cash_desk}}</p>
+            <p>Від кого: {{cash_receipt_element.client}}</p>
+            <p>Сума: {{cash_receipt_element.sum}}</p>
+            <p>Валюта: {{cash_receipt_element.currency}}</p>
+            <p>Коментар: {{cash_receipt_element.description}}</p>
+        </h4>
+    {% endif %}
+
+<!— flash messages -->
+{% if get_flashed_messages() %}
+{% for cat, msg in get_flashed_messages(True) %}
+    {% if cat == "success" %}
+        <div class="flash p-3 mb-2 bg-success text-white">{{msg}}</div>
+    {% else %}
+        <div class="flash p-3 mb-2 bg-danger text-white">{{msg}}</div>
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+{% endblock content %}
+

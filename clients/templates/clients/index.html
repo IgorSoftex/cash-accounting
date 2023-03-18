@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block buttons %}
+    <ul class="buttons">
+    <p><div class="btn-group" role="group" aria-label="Basic outlined example">
+        <a href="{{ url_for('clients.client_create') }}" class="btn btn-success" aria-current="page">Створити</a>
+    </div>
+    </ul>
+{% endblock buttons %}
+
+{% block content %}
+
+{{ super() }}
+
+<div class="clear"></div>
+<div class="content">
+    
+{% for clients in pages.items %}
+    <p>
+        <a href="{{ url_for('clients.client_detail', id=clients.id) }}"> {{ clients.name }} </a>
+    </p>
+{% endfor %}
+
+</div>
+        
+<!— flash messages -->
+{% if get_flashed_messages() %}
+{% for cat, msg in get_flashed_messages(True) %}
+    {% if cat == "success" %}
+        <div class="flash p-3 mb-2 bg-success text-white">{{msg}}</div>
+    {% else %}
+        <div class="flash p-3 mb-2 bg-danger text-white">{{msg}}</div>
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+{% endblock content%}
+
+{% block pagination %}        
+
+<!--nav aria-label="..."!-->
+<nav>
+  <ul class="pagination justify-content-center">
+    <li {% if pages.has_prev %} class="page-item enabled" {% else %} class="page-item disabled" {% endif %}>
+      <a class="page-link" href="./?page={{pages.prev_num}}"><<</a>
+    </li>
+    
+    {% for page in pages.iter_pages() %}
+        <li {% if page == pages.page %} class="page-item active" {% endif %} aria-current="page">
+            <a class="page-link" href="./?page={{page}}">{{page}}</a>
+        </li>
+    {% endfor %}
+
+    <li {% if pages.has_next %} class="page-item enabled" {% else %} class="page-item disabled" {% endif %}>
+      <a class="page-link" href="./?page={{pages.next_num}}">>></a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock pagination%}
