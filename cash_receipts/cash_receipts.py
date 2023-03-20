@@ -12,9 +12,10 @@ menu = [{'name': 'Головна', 'url': '/'},
         {'name': 'Каси', 'url': '/cash_desks'},
         {'name': 'Контрагенти', 'url': '/clients'},
         {'name': 'Валюти', 'url': '/currency'},
+        {'name': 'Види операцій', 'url': '/types_of_moves'},
         {'name': 'Надходження в касу', 'url': '/cash_receipts'},
         {'name': 'Розхід з каси', 'url': '/cash_expenses'},
-        {'name': 'Про програму', 'url': '/about'}
+        # {'name': 'Про програму', 'url': '/about'}
         ]
 
 form_data = {}

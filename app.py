@@ -47,7 +47,7 @@ class Clients(db.Model):
 class TypesOfMoves(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    slug = db.Column(db.String(100), nullable=False)
+    # slug = db.Column(db.String(100), nullable=False)
     debit = db.Column(db.Integer, nullable=False)
 
     cash_receipts = db.relationship('CashReceipts', backref='type', lazy=True)
