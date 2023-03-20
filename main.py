@@ -16,3 +16,4 @@ app.register_blueprint(types_of_moves, url_prefix='/types_of_moves')
 
 if __name__ == '__main__':
     app.run()
+    # print('app running...')
